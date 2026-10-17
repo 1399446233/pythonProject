@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "向前一点 · 目标清单",
+  "short_name": "向前一点",
+  "description": "把长远目标拆成每天可以完成的一小步。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f6f5f1",
+  "theme_color": "#f6f5f1",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
