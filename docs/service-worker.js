@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_NAME = "xiangqian-app-shell-v2";
+const CACHE_NAME = "xiangqian-app-shell-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -34,7 +34,7 @@ self.addEventListener("fetch", event => {
 
   if (request.mode === "navigate") {
     event.respondWith(
-      fetch(request).catch(async () => {
+      fetch(new Request(request, { cache: "no-store" })).catch(async () => {
         const cachedPage = await caches.match("./index.html");
         if (cachedPage) return cachedPage;
         throw new Error("离线时找不到已缓存的应用页面。");
@@ -46,7 +46,7 @@ self.addEventListener("fetch", event => {
   if (APP_SHELL.some(path => new URL(path, self.location.href).pathname === url.pathname)) {
     event.respondWith((async () => {
       try {
-        const response = await fetch(request);
+        const response = await fetch(new Request(request, { cache: "no-store" }));
         if (response.ok) {
           const cache = await caches.open(CACHE_NAME);
           await cache.put(request, response.clone());
