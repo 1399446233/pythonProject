@@ -403,6 +403,12 @@
   }
 
   async function checkMentorService() {
+    if (!["localhost", "127.0.0.1"].includes(location.hostname)) {
+      mentorServiceAvailable = false;
+      setMentorStatus("导师服务未连接；为保护你的资料，目标信息不会发送。任务和目标仍可正常使用。");
+      updateMentorButton();
+      return;
+    }
     try {
       const response = await fetch(new URL("./api/health", location.href), {
         headers: { Accept: "application/json" },
