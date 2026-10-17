@@ -19,6 +19,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent
+WEB_ROOT = ROOT / "docs"
 
 
 def load_local_environment() -> None:
@@ -602,7 +603,7 @@ class MentorRequestHandler(BaseHTTPRequestHandler):
             self.send_json(404, {"error": "找不到请求的页面。"})
             return
         relative_path, content_type = entry
-        body = (ROOT / relative_path).read_bytes()
+        body = (WEB_ROOT / relative_path).read_bytes()
         self.send_response(200)
         self.send_header("Content-Type", content_type)
         self.send_header("Cache-Control", "no-cache")
